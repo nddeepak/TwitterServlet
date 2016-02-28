@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Deepak's twitter search</title>
+<script type="text/javascript">
+function validate()
+{
+	flag=false;
+	for(i=0;i<document.form2.type.length;i++)
+    {
+	if(document.form2.type[i].checked)
+	{
+	  flag=true;
+       }
+      
+    }
+    if(!flag)
+     {
+	alert("Please select search type _ND__");
+	return false;
+     }
+    
+    if( document.form2.searchtext.value=="")
+    {	
+    alert("Please enter text _ND_");
+ 	document.form2.searchtext.focus();
+ 	return false;
+    }
+    
+    
+    var textBox = document.getElementById("texty");
+    var textLength = textBox.value.length;
+    if(textLength > 40)
+    	{
+    		alert("text too long");
+    		
+    		return false;
+    	}
+    var textBox1 = document.getElementById("texty").value;
+    var sliced = textBox1.slice(1);
+   	if(document.form2.type[1].checked)
+   		{
+   			if(textBox1.charAt(0)!=="@" ||  sliced.indexOf("@")!=-1)
+   				{
+   				alert("insert @ before username and only once in the string");
+   				return false;
+   				}
+   			
+   		}
+   	if(sliced.length < 1 && document.form2.type[1].checked)
+   		{
+   		alert("empty username");
+   		return false;
+   		}
+	}
+</script>
+</head>
+<body>
+<form name="form2" onsubmit="return validate();" action="TwitterServlet"  >
+
+
+<table align="center">
+<tr>
+
+
+</tr>
+  <tr>
+  <td> Search tweets based on</td> 
+ <td>   <input type="radio" id ="r1" name="type"  value="bytopic"/> Topic 
+ <input type="radio" id ="r2" name="type"  value="byusername"/>  Username</td>
+  </tr>
+
+ <tr>
+   <td> Search </td> 
+   <td>   <input type="text" id="texty" name="searchtext" /> </td>
+  </tr>
+ 
+ <tr>
+  <td>
+  <input type="submit" value="submit"/>
+  </td>
+ </tr>
+ 
+</table>
+</form>
+</body>
+</html>
